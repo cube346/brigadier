@@ -23,7 +23,7 @@ SUCATALOG_URL = 'https://swscan.apple.com/content/catalogs/others/index-11-10.15
 SEVENZIP_URL = 'https://www.7-zip.org/a/7z2201-x64.msi'
 
 def status(msg):
-    print "%s\n" % msg
+    print("%s\n" % msg)
 
 def getCommandOutput(cmd):
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -118,7 +118,7 @@ def installBootcamp(msipath):
     status("Install log output:")
     with open(logpath, 'r') as logfd:
         logdata = logfd.read()
-        print logdata.decode('utf-16')
+        print(logdata.decode('utf-16'))
     postInstallConfig()
     
 def main():
@@ -147,7 +147,7 @@ according to the post date.")
 
     opts, args = o.parse_args()
     if opts.version:
-        print VERSION
+        print(VERSION)
         sys.exit(0)
 
     if opts.install:
@@ -241,14 +241,14 @@ when running the installer out of 'system32'." % output_dir)
             # sys.exit("There is more than one ESD product available for this model: %s. "
             #          "Automically selecting the one with the most recent PostDate.." 
             #          % ", ".join([p.keys()[0] for p in pkg_data]))
-            print "There is more than one ESD product available for this model:"
+            print("There is more than one ESD product available for this model:")
             # Init latest to be epoch start
             latest_date = datetime.datetime.fromtimestamp(0)
             chosen_product = None
             for i, p in enumerate(pkg_data):
                 product = p.keys()[0]
                 postdate = p[product].get('PostDate')
-                print "%s: PostDate %s" % (product, postdate)
+                print("%s: PostDate %s" % (product, postdate))
                 if postdate > latest_date:
                     latest_date = postdate
                     chosen_product = product
@@ -259,9 +259,9 @@ when running the installer out of 'system32'." % output_dir)
                              "or was not found applicable to models: %s"
                              % (opts.product_id, ", ".join(models)))
                 chosen_product = opts.product_id
-                print "Selecting manually-chosen product %s." % chosen_product
+                 "Selecting manually-chosen product %s." % chosen_product
             else:
-                print "Selecting %s as it's the most recently posted." % chosen_product
+                 "Selecting %s as it's the most recently posted." % chosen_product
 
             for p in pkg_data:
                 if p.keys()[0] == chosen_product:
